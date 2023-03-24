@@ -1,0 +1,60 @@
+trigger:
+  - none
+
+pool:
+  vmImage: 'ubuntu-22.04'
+
+
+steps:
+
+  - pwsh: |
+      Write-Host "Setting up the date time for build variable"
+      $date=$(Get-Date -format yyyyMMdd-H:mm:ss)
+      Write-Host "##vso[task.setvariable variable=currentTimeStamp]$date"
+    displayName: 'Getting timestamp'
+
+  - script: |
+      sudo apt-get update
+      sudo apt-get install -y zip
+      sudo apt-get install -y wget
+      sudo apt-get install -y ca-certificates
+      sudo apt-get install -y libnss3-dev libasound2 libxss1 libappindicator3-1 gconf-service 
+      sudo apt-get install -y libgconf-2-4 libpango1.0-0 xdg-utils fonts-liberation libgbm1 libu2f-udev
+    displayName: 'Install Debian packages'
+    continueOnError: true
+
+  - script: |
+      ruby -v
+      sudo gem install bundler
+      sudo bundle install
+      sudo cucumber --version
+    displayName: 'Bundle install'
+    continueOnError: true
+
+  - script: |
+      sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+      sudo dpkg -i google-chrome*.deb
+      sudo rm google-chrome*.deb
+    displayName: 'Install Chrome Browser'
+    continueOnError: true
+
+  - script: |
+      sudo version=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE")
+      sudo wget -N https://chromedriver.storage.googleapis.com/${version}/chromedriver_linux64.zip
+      sudo unzip chromedriver_linux64.zip
+      sudo chmod +x chromedriver
+      sudo cp chromedriver /usr/local/bin
+      sudo rm chromedriver_linux64.zip
+      sudo rm chromedriver
+      sudo chromedriver -v
+    displayName: 'Install Chromedriver'
+    continueOnError: true
+
+  - script: |
+      cucumber -f pretty -f html -o $(System.DefaultWorkingDirectory)/reports/report-$(currentTimeStamp).html
+    displayName: 'E2E Testing'
+    continueOnError: true
+
+  - publish: $(System.DefaultWorkingDirectory)/reports/report-$(currentTimeStamp).html
+    artifact: Report
+    displayName: 'Artifacts'
