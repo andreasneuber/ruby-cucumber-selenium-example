@@ -8,19 +8,21 @@ This project is automation demo on Ruby with Cucumber and Selenium WebDriver.
 
 2. Install also bundler: https://www.geeksforgeeks.org/how-to-install-ruby-bundler-on-windows/
 
-3. Clone project
+3. Make sure ChromeDriver is installed on your system
+
+4. Clone project
 
 ```
-git clone https://github.com/mandziak-nv/automation-test-task.git
+git clone https://github.com/andreasneuber/ruby-cucumber-selenium-framework.git
 ```
 
-4. Install required dependencies
+5. Install required dependencies
 
 ```shell
 bundle install
 ```
 
-5. Run tests locally
+6. Run tests locally
 
 ```shell
 # all at once..
