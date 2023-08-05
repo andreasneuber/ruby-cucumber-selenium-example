@@ -1,4 +1,4 @@
-#  ruby-cucumber-selenium-framework
+#  ruby-cucumber-selenium-example
 Example of using Ruby with Cucumber and Selenium WebDriver for automated UI tests.
 
 ## Application under test
