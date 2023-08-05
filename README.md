@@ -1,6 +1,9 @@
 #  ruby-cucumber-selenium-framework
+Example of using Ruby with Cucumber and Selenium WebDriver for automated UI tests.
 
-This project is automation demo on Ruby with Cucumber and Selenium WebDriver.
+## Application under test
+The feature files, step definitions and page objects were written for https://github.com/andreasneuber/automatic-test-sample-site.
+Readme in that repo has further details how to set it up.
 
 ## Project setup
 
@@ -22,7 +25,7 @@ git clone https://github.com/andreasneuber/ruby-cucumber-selenium-framework.git
 bundle install
 ```
 
-6. Run tests locally
+## Run tests locally
 
 ```shell
 # all at once..
@@ -53,10 +56,7 @@ cucumber features/ProvideYourDetails.feature
 cucumber features/ConcurrentWindows.feature
 ```
 
-## Reports
-Creating a nice HTML report by using the built-in tools of Cucumber with some bash scripting:
-
+## Run all tests locally, create HTML report
 `export now=$(date +"%Y-%m-%d_%H-%M-%S") && cucumber -f pretty -f html -o reports/$now.report.html`
 
 Report will appear in directory `reports` where it can be opened in a browser.
-
