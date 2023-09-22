@@ -11,7 +11,7 @@ Readme in that repo has further details how to set it up.
 
 2. Install also bundler: https://www.geeksforgeeks.org/how-to-install-ruby-bundler-on-windows/
 
-3. Make sure ChromeDriver is installed on your system
+3. Make sure ChromeDriver is installed on your system (see also FAQ below)
 
 4. Clone project
 
@@ -60,3 +60,18 @@ cucumber features/ConcurrentWindows.feature
 `export now=$(date +"%Y-%m-%d_%H-%M-%S") && cucumber -f pretty -f html -o reports/$now.report.html`
 
 Report will appear in directory `reports` where it can be opened in a browser.
+
+## Update Gem files
+```shell
+bundle update
+```
+
+## FAQ
+#### How to install/update Chromedriver on Windows?
+There is different ways, one possibility:
+1. Go to https://googlechromelabs.github.io/chrome-for-testing/ > Channel 'Stable'
+2. Download the win32 version
+3. Save `chromedriver.exe` somewhere in your file system
+4. Edit environment variables > System Variables > Path and path to your Chromedriver location
+5. If necessary restart machine
+6. To check if all is good with cmd `chromedriver -version` which should give you the correct version number
