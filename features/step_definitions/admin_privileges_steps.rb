@@ -2,15 +2,15 @@ require 'test/unit'
 include Test::Unit::Assertions
 
 Given('I navigate to login page') do
-  login_page = LoginPage.new DRIVER
-  login_page.visit
+  # login_page = LoginPage.new DRIVER
+  LOGIN_PAGE.visit
 end
 
 When(/^I submit username "([^"]*)" and password "([^"]*)"$/) do |username, pw|
-  login_page = LoginPage.new DRIVER
-  login_page.provide_username username
-  login_page.provide_password pw
-  login_page.click_login
+  # login_page = LoginPage.new DRIVER
+  LOGIN_PAGE.provide_username username
+  LOGIN_PAGE.provide_password pw
+  LOGIN_PAGE.click_login
 end
 
 Then('I will be logged into the Admin Dashboard') do
