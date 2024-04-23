@@ -80,6 +80,9 @@ There is different ways, one possibility:
 4. Edit environment variables > System Variables > Path and path to your Chromedriver location
 5. If necessary restart machine
 6. To check if all is good with cmd `chromedriver -version` which should give you the correct version number
+7. Put file `update.sh` into the folder where `chromedriver.exe` is located
+8. To update Chromedriver: `bash update.sh`
+9. This should download the latest Chromedriver
 
 ### How to switch to headless mode?
 Please have a look at `features\support\env.rb` and there at the `Before do` block in particular.
