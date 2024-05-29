@@ -30,11 +30,13 @@ GEM
     cucumber-messages (22.0.0)
     cucumber-tag-expressions (6.1.0)
     diff-lcs (1.5.1)
+    ffi (1.16.3)
     ffi (1.16.3-x64-mingw-ucrt)
     mini_mime (1.1.5)
     multi_test (1.1.0)
     power_assert (2.0.3)
-    rexml (3.2.6)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -54,6 +56,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    strscan (3.1.0)
     sys-uname (1.2.3)
       ffi (~> 1.1)
     test-unit (3.6.2)
@@ -62,6 +65,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x86_64-linux
 
 DEPENDENCIES
   cucumber
