@@ -85,7 +85,7 @@ There is different ways, one possibility:
 9. This should download the latest Chromedriver
 
 ### How to switch to headless mode?
-Please have a look at `features\support\env.rb` and there at the `Before do` block in particular.
+Please have a look at `features\support\env.rb`, lines 5 ff.
 
 ### Is there a Docker container which has the latest Chrome browser and Chrome driver?
 Please have a look here: https://hub.docker.com/u/selenium > `selenium/standalone-chrome`
