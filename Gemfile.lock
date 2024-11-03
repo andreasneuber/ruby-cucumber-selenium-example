@@ -36,7 +36,7 @@ GEM
     mini_mime (1.1.5)
     multi_test (1.1.0)
     power_assert (2.0.3)
-    rexml (3.3.7)
+    rexml (3.3.9)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
