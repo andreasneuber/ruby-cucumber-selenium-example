@@ -1,27 +1,23 @@
 require 'selenium-webdriver'
+require_relative 'base_page'
 
-class CreditCardResponsePage
+class CreditCardResponsePage < BasePage
 
   def initialize(driver)
-    @driver = driver
+    super(driver)
     @url = '?action=responsecc'
   end
 
-  def visit
-    @driver.navigate.to BASE_URL + @url
-  end
-
   def is_alert_message_box_displayed
-    wait = Selenium::WebDriver::Wait.new(timeout: 10) # seconds
-    wait.until { @driver.find_element(xpath: "//div[contains(@class, 'alert')]") }
+    wait_for_element(:xpath, "//div[contains(@class, 'alert')]")
   end
 
   def grab_response_from_alert_box
-    element = @driver.find_element(class_name: 'response').text
+    get_text(:class_name, 'response')
   end
 
   def grab_more_info_from_alert_box
-    element = @driver.find_element(class_name: 'more-info').text
+    get_text(:class_name, 'more-info')
   end
 
 end

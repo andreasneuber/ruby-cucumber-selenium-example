@@ -21,7 +21,7 @@ steps:
       sudo apt-get install -y libnss3-dev libasound2 libxss1 libappindicator3-1 gconf-service 
       sudo apt-get install -y libgconf-2-4 libpango1.0-0 xdg-utils fonts-liberation libgbm1 libu2f-udev
     displayName: 'Install Debian packages'
-    continueOnError: true
+    continueOnError: "true"
 
   - script: |
       ruby -v
@@ -29,31 +29,33 @@ steps:
       sudo bundle install
       sudo cucumber --version
     displayName: 'Bundle install'
-    continueOnError: true
+    continueOnError: "true"
 
   - script: |
       sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
       sudo dpkg -i google-chrome*.deb
       sudo rm google-chrome*.deb
     displayName: 'Install Chrome Browser'
-    continueOnError: true
+    continueOnError: "true"
 
   - script: |
-      sudo version=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE")
-      sudo wget -N https://chromedriver.storage.googleapis.com/${version}/chromedriver_linux64.zip
-      sudo unzip chromedriver_linux64.zip
-      sudo chmod +x chromedriver
-      sudo cp chromedriver /usr/local/bin
-      sudo rm chromedriver_linux64.zip
-      sudo rm chromedriver
-      sudo chromedriver -v
+      CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f 1)
+      echo "Chrome version: $CHROME_VERSION"
+      CHROMEDRIVER_URL=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | jq -r ".channels.Stable.downloads.chromedriver[] | select(.platform==\"linux64\") | .url")
+      echo "Downloading ChromeDriver from: $CHROMEDRIVER_URL"
+      wget -N "$CHROMEDRIVER_URL" -O chromedriver-linux64.zip
+      unzip chromedriver-linux64.zip
+      sudo chmod +x chromedriver-linux64/chromedriver
+      sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
+      sudo rm -rf chromedriver-linux64.zip chromedriver-linux64
+      chromedriver --version
     displayName: 'Install Chromedriver'
-    continueOnError: true
+    continueOnError: "true"
 
   - script: |
       cucumber -f pretty -f html -o $(System.DefaultWorkingDirectory)/reports/report-$(currentTimeStamp).html
     displayName: 'E2E Testing'
-    continueOnError: true
+    continueOnError: "true"
 
   - publish: $(System.DefaultWorkingDirectory)/reports/report-$(currentTimeStamp).html
     artifact: Report

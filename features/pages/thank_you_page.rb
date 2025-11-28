@@ -1,18 +1,15 @@
 require 'selenium-webdriver'
+require_relative 'base_page'
 
-class ThankYouPage
+class ThankYouPage < BasePage
 
   def initialize(driver)
-    @driver = driver
+    super(driver)
     @url = '?action=thankYou'
   end
 
-  def visit
-    @driver.navigate.to BASE_URL + @url
-  end
-
   def grab_thank_you_message
-    message = @driver.find_element(tag_name: 'h2').text
+    get_text(:tag_name, 'h2')
   end
 
 end

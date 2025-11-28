@@ -1,0 +1,58 @@
+require:
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  Exclude:
+    - 'reports/**/*'
+    - 'pipeline-assets/**/*'
+    - 'vendor/**/*'
+    - 'Gemfile.lock'
+
+# Prefer single quotes for strings
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+# Allow longer lines for test files
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'features/**/*'
+
+# Allow longer methods in page objects
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'features/pages/**/*'
+    - 'features/step_definitions/**/*'
+
+# Allow multiple expectations in test steps
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - 'features/step_definitions/**/*'
+
+# Allow longer blocks in Cucumber steps
+Metrics/BlockLength:
+  Exclude:
+    - 'features/support/**/*'
+    - 'features/step_definitions/**/*'
+
+# Cucumber step definitions use special regex syntax
+Style/RegexpLiteral:
+  Exclude:
+    - 'features/step_definitions/**/*'
+
+# Allow constants in Cucumber support files
+Naming/ConstantName:
+  Exclude:
+    - 'features/support/**/*'
+
+# Documentation is optional for page objects
+Style/Documentation:
+  Enabled: false
+
+# Allow numbered variables in tests
+Naming/VariableNumber:
+  Enabled: false

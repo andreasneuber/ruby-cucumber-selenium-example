@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (2.4.3)
     base64 (0.2.0)
     bigdecimal (3.1.9)
     builder (3.3.0)
@@ -32,10 +33,21 @@ GEM
     diff-lcs (1.6.1)
     ffi (1.17.1-x64-mingw-ucrt)
     ffi (1.17.1-x86_64-linux-gnu)
+    json (2.16.0)
+    language_server-protocol (3.17.0.5)
+    lint_roller (1.1.0)
     logger (1.6.6)
     mini_mime (1.1.5)
     multi_test (1.1.0)
+    parallel (1.27.0)
+    parser (3.3.10.0)
+      ast (~> 2.4.1)
+      racc
     power_assert (2.0.5)
+    prism (1.6.0)
+    racc (1.8.1)
+    rainbow (3.1.1)
+    regexp_parser (2.11.3)
     rexml (3.4.2)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
@@ -50,6 +62,25 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.2)
+    rubocop (1.81.7)
+      json (~> 2.3)
+      language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.1.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 2.9.3, < 3.0)
+      rubocop-ast (>= 1.47.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 4.0)
+    rubocop-ast (1.48.0)
+      parser (>= 3.3.7.2)
+      prism (~> 1.4)
+    rubocop-performance (1.26.1)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.75.0, < 2.0)
+      rubocop-ast (>= 1.47.1, < 2.0)
+    ruby-progressbar (1.13.0)
     rubyzip (2.4.1)
     selenium-webdriver (4.30.1)
       base64 (~> 0.2)
@@ -61,6 +92,9 @@ GEM
       ffi (~> 1.1)
     test-unit (3.6.7)
       power_assert
+    unicode-display_width (3.2.0)
+      unicode-emoji (~> 4.1)
+    unicode-emoji (4.1.0)
     websocket (1.2.11)
 
 PLATFORMS
@@ -68,11 +102,16 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  cucumber
-  rspec
-  rspec-expectations
-  selenium-webdriver
-  test-unit
+  cucumber (~> 9.0)
+  rspec (~> 3.13)
+  rspec-expectations (~> 3.13)
+  rubocop (~> 1.68)
+  rubocop-performance (~> 1.23)
+  selenium-webdriver (~> 4.25)
+  test-unit (~> 3.6)
+
+RUBY VERSION
+   ruby 3.4.7p58
 
 BUNDLED WITH
    2.3.24

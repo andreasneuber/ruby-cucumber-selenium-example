@@ -1,1 +1,1 @@
-default: --publish-quiet
+default: --publish-quiet --format pretty --format json --out reports/cucumber.json --format html --out reports/cucumber.html
